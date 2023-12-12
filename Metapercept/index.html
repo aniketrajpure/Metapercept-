@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title> Employee Details</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        </head>
+        <body>
+            <h1> Employee Details</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th> Employee Name</th>
+                        <th>Designation</th>
+                        <th>Date of Joining</th>
+                        <th>Address </th>
+                        <th>Salary</th>
+                    </tr>
+                </thead>
+                <tbody id = "employeeTable" ></tbody>
+            </table>
+            <script>
+
+                const employeesXML =
+                <employees>
+                    <employee>
+                        <name> Employee 1 </name>
+                        <designation>Technical Writer</designation>
+                        <dateOfJoining> 2022 -01 -01</dateOfJoining>
+                        <address> Sai Chowk Pune </address>
+                        <salary> 45000 </salary>
+                    </employee>
+                    
+                    <employee>
+                        <name> Employee 2 </name>
+                        <designation>Manager</designation>
+                        <dateOfJoining> 2020 -01 -01</dateOfJoining>
+                        <address> MG Chowk Pune </address>
+                        <salary> 60000 </salary>
+                    </employee>
+                    <employee>
+                        <name> Employee 1 </name>
+                        <designation>Technical Writer</designation>
+                        <dateOfJoining> 2022 -01 -01</dateOfJoining>
+                        <address> Sai Chowk Pune </address>
+                        <salary> 45000 </salary>
+                    </employee>
+                    <employee>
+                        <name> Employee 4 </name>
+                        <designation>Manager</designation>
+                        <dateOfJoining> 2020 -01 -01</dateOfJoining>
+                        <address>  MG Chowk Pune </address>
+                        <salary> 60000 </salary>
+                    </employee>
+                    <employee>
+                        <name> Employee 1 </name>
+                        <designation>Technical Writer</designation>
+                        <dateOfJoining> 2022 -01 -01</dateOfJoining>
+                        <address> Sai Chowk Pune </address>
+                        <salary> 45000 </salary>
+                    </employee>
+                    <employee>
+                        <name> Employee 2 </name>
+                        <designation>Manager</designation>
+                        <dateOfJoining> 2020 -01 -01</dateOfJoining>
+                        <address>  MG Chowk Pune </address>
+                        <salary> 60000 </salary>
+                    </employee>
+                </employees>
+
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(employeesXML), "text/xml");
+                const employees = xmlDoc.getElemetsByTagName("employee");
+
+                const tableBody = document.getElementById("employeeTable");
+                for (let i = 0; i< employees.length; i++) {
+                    const employee = employees[i];
+                    const designation = employee.getElemetsByTagName("designation")[0].textContent;
+                    cons salary = parseFloat(employee.getElemetsByTagName("salary")[0]).textContent);
+
+                    if(designation === "Technical Writer"){
+                        createTableRow(employee);
+                    }
+
+                    if(salary > 500000 && salary < 700000){
+                        createTableRow(employee);
+                    }
+
+                }
+                
+                function createTableRow(employee) {
+                     const name= employee.getElemetsByTagName("name")[0].textContent;
+                     const designation = employee.getElemetsByTagName("designation")[0].textContent;
+                     const dateOfJoining = employee.getElemetsByTagName("dateOfJoining")[0].textContent;
+                     const address = employee.getElemetsByTagName("address")[0].textContent;
+                     const salaryc= employee.getElemetsByTagName("salary")[0].textContent;
+
+                     const row = document.createElement("tr");
+                     const nameCell  = document.createElement("td");
+                     const designationCell = document.createElement("td");
+                     const dateCell = docucment.createElement("td");
+                     const addressCell = document.createElement("td");
+                     const salaryCell = document.createElement("td");
+
+                     nameCell.textContent = name;
+                     designationCell.textContent = designation;
+                     dateCell.textContent = dateOfJoining;
+                     addressCell.textContent = address;
+                     salaryCell.textContent = salary;
+
+                     row.appendChild(nameCell);
+                     row.appendChild(designationCell);
+                     row.appendChild(dateCell);
+                     row.appendChild(addressCell);
+                     row.appendChild(salaryCell);
+                     tableBody.appendChild(row)
+                     
+
+            
+
+                }
+                 
+            </script>
+        </body>
+        
+</html>
